@@ -1,0 +1,17 @@
+[
+  {
+    "code": "HALFPRICE",
+    "memberPrice": 90,
+    "familyPrice": 25
+  },
+  {
+    "code": "5OFF",
+    "memberPrice": 174,
+    "familyPrice": 45
+  },
+  {
+    "code": "NYCSPECIAL",
+    "memberPrice": 50,
+    "familyPrice": 5
+  }
+]
