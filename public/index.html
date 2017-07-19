@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
   <title>CLEAR code test</title>
   <head>
-    <link rel="stylesheet" href="css/main.css">  
+    <meta charset='utf-8'>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Angular Setup -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+
+    <!-- Application Setup -->
+    <script src="app.js"></script>
+
+    <!-- Controllers -->
+    <script src="controllers/controller.js"></script>
   </head>
   <body>
-    <h1>Hi. Welcome to the CLEAR code test! Here's a blank index.html!</h1>
+    <div class="container" ng-controller="AppCtrl">
+      <h1>Hi. Welcome to the CLEAR code test! Here's a blank index.html!</h1>
+
+      <td ng-model="haha.food">{{haha.food}}</td>
+    </div>
   </body>
 </html>
