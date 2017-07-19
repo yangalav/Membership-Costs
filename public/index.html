@@ -5,6 +5,7 @@
     <meta charset='utf-8'>
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <!-- Angular Setup -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
@@ -17,9 +18,21 @@
   </head>
   <body>
     <div class="container" ng-controller="AppCtrl">
-      <h1>Hi. Welcome to the CLEAR code test! Here's a blank index.html!</h1>
+      <h1>CLEAR Membership Estimate</h1>
 
-      <td ng-model="haha.food">{{haha.food}}</td>
+      <!-- Trigger/Open The Modal -->
+      <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Add a Family Member</button>
+
+      <div id="id01" class="w3-modal">
+        <div class="w3-modal-content">
+          <div class="w3-container">
+            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+            <p>Some text. Some text. Some text.</p>
+            <p>Some text. Some text. Some text.</p>
+         </div>
+       </div>
+     </div>
+
     </div>
   </body>
 </html>
