@@ -3,6 +3,10 @@
   <title>CLEAR code test</title>
   <head>
     <meta charset='utf-8'>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -23,15 +27,40 @@
       <!-- Trigger/Open The Modal -->
       <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Add a Family Member</button>
 
+      <!-- Family Member Modal -->
       <div id="id01" class="w3-modal">
         <div class="w3-modal-content">
           <div class="w3-container">
             <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-            <p>Some text. Some text. Some text.</p>
-            <p>Some text. Some text. Some text.</p>
+            <h1>Add Family Member</h1>
+
+            <form ng-submit="addMember()">
+              <input type="text" ng-model="member" name="text" />
+              <input type="submit" id="submit" value="Add" onclick="document.getElementById('id01').style.display='none'"/>
+              <pre>members={{members}}</pre>
+            </form>
+
          </div>
        </div>
      </div>
+
+     <!-- Membership Table -->
+     <table class="center">
+       <tr>
+         <th>Annual Membership</th>
+         <th>$179</th>
+       </tr>
+
+       <tr ng-repeat="member in members">
+         <td>{{member}}</td>
+         <td>$50</td>
+       </tr>
+
+       <tr>
+         <td>Total</td>
+         <td>$179</td>
+       </tr>
+     </table>
 
     </div>
   </body>
