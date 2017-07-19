@@ -8,6 +8,8 @@ myApp.controller('AppCtrl', ['$scope', '$http',
     $scope.familyPrice = 50;
     $scope.isLess = true;
     $scope.promocode = "Promo Code";
+    $scope.isApply = true;
+    $scope.isRemove = false;
 
     $scope.addMember = function(){
       console.log('submitting');
@@ -30,6 +32,8 @@ myApp.controller('AppCtrl', ['$scope', '$http',
               $scope.memberPrice = promocode.memberPrice;
               $scope.familyPrice = promocode.familyPrice;
               $scope.total = ($scope.members.length * $scope.familyPrice) + $scope.memberPrice;
+              $scope.isApply = false;
+              $scope.isRemove = true;
             }
           }
         })

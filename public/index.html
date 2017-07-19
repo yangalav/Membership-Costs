@@ -64,7 +64,8 @@
     <!-- Promo Code -->
     <form ng-submit="addPromocode()">
       <input type="text" ng-model="promocode" value="PROMOCODE"/>
-      <input type="submit" id="submit" value="Apply"/>
+      <input type="submit" id="submit" ng-show="isApply" class="ng-hide" value="Apply"/>
+      <input type="submit" id="submit" ng-show="isRemove" class="ng-hide" value="Remove"/>
     </form>
 
     </div>
