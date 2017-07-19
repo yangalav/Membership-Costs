@@ -3,13 +3,27 @@ myApp.controller('AppCtrl', ['$scope', '$http',
     $scope.haha = "cheeseburger";
     $scope.members = [];
     $scope.member = '';
-    $scope.memberPrice = 179;
-    $scope.total = $scope.memberPrice;
-    $scope.familyPrice = 50;
     $scope.isLess = true;
     $scope.promocode = "Promo Code";
-    $scope.isApply = true;
-    $scope.isRemove = false;
+
+    let setDefault = function(){
+      $scope.memberPrice = 179;
+      $scope.familyPrice = 50;
+      $scope.total = ($scope.members.length * $scope.familyPrice) + $scope.memberPrice;
+    }
+
+    let setApply = function(){
+      $scope.isApply = true;
+      $scope.isRemove = false;
+    }
+
+    let setRemove = function(){
+      $scope.isApply = false;
+      $scope.isRemove = true;
+    }
+
+    setDefault();
+    setApply();
 
     $scope.addMember = function(){
       console.log('submitting');
@@ -25,21 +39,25 @@ myApp.controller('AppCtrl', ['$scope', '$http',
     };
 
     $scope.addPromocode = function(){
-      $http.get('data/promo.json')
-        .success(function(data) {
-          for(let promocode of data){
-            if($scope.promocode === promocode.code){
-              $scope.memberPrice = promocode.memberPrice;
-              $scope.familyPrice = promocode.familyPrice;
-              $scope.total = ($scope.members.length * $scope.familyPrice) + $scope.memberPrice;
-              $scope.isApply = false;
-              $scope.isRemove = true;
+      if($scope.isRemove){
+        setDefault();
+        setApply();
+      } else {
+        $http.get('data/promo.json')
+          .success(function(data) {
+            for(let promocode of data){
+              if($scope.promocode === promocode.code){
+                $scope.memberPrice = promocode.memberPrice;
+                $scope.familyPrice = promocode.familyPrice;
+                $scope.total = ($scope.members.length * $scope.familyPrice) + $scope.memberPrice;
+                setRemove();
+              }
             }
-          }
-        })
-        .error(function(data){
-          console.log("ERROR");
-        });
+          })
+          .error(function(data){
+            console.log("ERROR");
+          });
+      }
     };
 
 
