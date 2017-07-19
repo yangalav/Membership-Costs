@@ -4,6 +4,7 @@ myApp.controller('AppCtrl', ['$scope',
     $scope.members = [];
     $scope.member = '';
     $scope.total = 179;
+    $scope.isLess = true;
 
     $scope.addMember = function(){
       console.log('submitting');
@@ -11,6 +12,9 @@ myApp.controller('AppCtrl', ['$scope',
         $scope.members.push(this.member);
         $scope.member = '';
         $scope.total += 50;
+        if($scope.members.length === 3){
+          $scope.isLess = false;
+        }
       }
     };
 
