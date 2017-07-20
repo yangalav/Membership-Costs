@@ -1,10 +1,10 @@
 myApp.controller('AppCtrl', ['$scope', '$http',
   function($scope, $http) {
-    $scope.haha = "cheeseburger";
     $scope.members = [];
     $scope.member = '';
     $scope.isLess = true;
     $scope.promocode = "Promo Code";
+    $scope.customStyle = {};
 
     let setDefault = function(){
       $scope.memberPrice = 179;
@@ -51,6 +51,9 @@ myApp.controller('AppCtrl', ['$scope', '$http',
                 $scope.familyPrice = promocode.familyPrice;
                 $scope.total = ($scope.members.length * $scope.familyPrice) + $scope.memberPrice;
                 setRemove();
+                turnBlack();
+              } else {
+                turnRed();
               }
             }
           })
@@ -60,6 +63,16 @@ myApp.controller('AppCtrl', ['$scope', '$http',
       }
     };
 
+    let turnRed = function(){
+      $scope.customStyle.colorClass = "red";
+    }
 
+    let turnBlack = function(){
+      $scope.customStyle.colorClass = "black";
+    }
+
+    $scope.alert = function(){
+      alert("CLICKED!");
+    }
 
 }]);
