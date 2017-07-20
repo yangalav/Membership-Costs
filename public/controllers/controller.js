@@ -3,8 +3,25 @@ myApp.controller('AppCtrl', ['$scope', '$http',
     $scope.members = [];
     $scope.member = '';
     $scope.isLess = true;
-    $scope.promocode = "Promo Code";
+    $scope.isOpen = false;
+    $scope.promocode = '';
     $scope.customStyle = {};
+
+    $scope.turnRed = function(){
+      $scope.customStyle.colorClass = "red";
+    }
+
+    $scope.turnBlack = function(){
+      $scope.customStyle.colorClass = "black";
+    }
+
+    $scope.changeOverlay = function(){
+      $scope.customStyle.overlayClass = "overlay";
+    }
+
+    $scope.changeBackColor = function(){
+      $scope.turnBlack();
+    }
 
     let setDefault = function(){
       $scope.memberPrice = 179;
@@ -35,11 +52,13 @@ myApp.controller('AppCtrl', ['$scope', '$http',
         if($scope.members.length === 3){
           $scope.isLess = false;
         }
+        $scope.closeModal();
       }
     };
 
     $scope.addPromocode = function(){
       if($scope.isRemove){
+        $scope.promocode = '';
         setDefault();
         setApply();
       } else {
@@ -50,10 +69,10 @@ myApp.controller('AppCtrl', ['$scope', '$http',
                 $scope.memberPrice = promocode.memberPrice;
                 $scope.familyPrice = promocode.familyPrice;
                 $scope.total = ($scope.members.length * $scope.familyPrice) + $scope.memberPrice;
+                $scope.turnBlack();
                 setRemove();
-                turnBlack();
               } else {
-                turnRed();
+                $scope.turnRed();
               }
             }
           })
@@ -63,16 +82,12 @@ myApp.controller('AppCtrl', ['$scope', '$http',
       }
     };
 
-    let turnRed = function(){
-      $scope.customStyle.colorClass = "red";
+    $scope.openModal = function(){
+      $scope.isOpen = true;
     }
 
-    let turnBlack = function(){
-      $scope.customStyle.colorClass = "black";
-    }
-
-    $scope.alert = function(){
-      alert("CLICKED!");
+    $scope.closeModal = function(){
+      $scope.isOpen = false;
     }
 
 }]);

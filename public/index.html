@@ -19,34 +19,27 @@
     <!-- Controllers -->
     <script src="controllers/controller.js"></script>
   </head>
-  <body>
+  <body ng-class="customStyle.colorClass">
     <div class="container" ng-controller="AppCtrl">
+      <!-- Darkens background overlay when Modal is opened-->
+      <div class="overlay" ng-show=isOpen></div>
+
       <h1>CLEAR Membership Estimate</h1>
 
       <!-- Trigger/Open The Modal -->
-      <button ng-show="isLess" class="ng-hide" onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Add a Family Member</button>
+      <button ng-show="isLess" class="ng-hide" ng-click="openModal()" class="w3-button w3-black">Add a Family Member</button>
 
-      <!--Custom Modal -->
-      <div class="modal">
-        <span class="close close-btn" ng-click="alert()">&times;</span>
-        <p>HI</p>
+      <!--Custom Family Member Modal -->
+      <div ng-show="isOpen" class="modal">
+        <span class="close close-btn" ng-click="closeModal()">&times;</span>
+        <h1 class="center">Add Family Member</h1>
+
+        <form ng-submit="addMember()">
+          <input type="text" ng-model="member" ng-class="customStyle.colorClass" name="text" />
+          <input type="submit" id="submit" value="Add"/>
+        </form>
+
       </div>
-
-      <!-- Family Member Modal -->
-      <div id="id01" class="w3-modal">
-        <div class="w3-modal-content">
-          <div class="w3-container">
-            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-            <h1>Add Family Member</h1>
-
-            <form ng-submit="addMember()">
-              <input type="text" ng-model="member" name="text" />
-              <input type="submit" id="submit" value="Add" onclick="document.getElementById('id01').style.display='none'"/>
-            </form>
-
-         </div>
-       </div>
-     </div>
 
      <!-- Membership Table -->
      <table class="center">
@@ -68,7 +61,7 @@
 
     <!-- Promo Code -->
     <form ng-submit="addPromocode()">
-      <input type="text" ng-class="customStyle.colorclass" ng-model="promocode" value="PROMOCODE"/>
+      <input type="text" ng-change="changeBackColor()" ng-model="promocode" ng-class="customStyle.colorClass" name="text"/>
       <input type="submit" id="submit" ng-show="isApply" class="ng-hide" value="Apply"/>
       <input type="submit" id="submit" ng-show="isRemove" class="ng-hide" value="Remove"/>
     </form>
