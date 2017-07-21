@@ -16,6 +16,10 @@
   color: black;
 }
 
+.light-gray {
+  color: lightgray;
+}
+
 .overlay {
    position: absolute;
    top: 0;
@@ -69,7 +73,11 @@ table {
   border: 2px solid red;
 }
 
-.customPricePadding {
+th, td {
+  padding: 8px;
+}
+
+.customPriceStyle {
   padding: 0 10px 0 40px;
 }
 
