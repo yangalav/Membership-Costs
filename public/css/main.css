@@ -8,14 +8,6 @@
   margin-right: auto;
 }
 
-.w3-container {
-  padding-bottom: 30px !important;
-}
-
-.left {
-  margin-left: auto !important;
-}
-
 .red {
   color: red;
 }
@@ -25,7 +17,7 @@
 }
 
 .overlay {
-  position: absolute;
+   position: absolute;
    top: 0;
    left: 0;
    height: 100%;
@@ -35,15 +27,21 @@
 
 .modal {
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   border-radius: 5px;
   border: gray solid 2px;
-  margin-top: 400px;
-  padding: 30px 200px 30px 200px;
+  margin-top: 100px;
+  padding: 20px 20px 20px 20px;
   background: #F5F3CE;
   left: 50%;
   right: 50%;
   transform: translate(-50%, -50%);
+  height: 100px;
+  width: 400px;
+}
+
+h2 {
+  position: relative;
 }
 
 .close-btn {
@@ -56,4 +54,29 @@
 .close:hover {
     color: darkgray;
     cursor: pointer;
+}
+
+.customInput {
+  margin-top: 10px;
+}
+
+.divider {
+  border: 2px solid red;
+}
+
+table {
+  border-collapse: collapse;
+  border: 2px solid red;
+}
+
+.customPricePadding {
+  padding: 0 10px 0 40px;
+}
+
+.customLeft {
+  text-align: left;
+}
+
+.memberPadding {
+  padding: 0 0 0 30px;
 }

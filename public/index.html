@@ -27,37 +27,43 @@
       <h1>CLEAR Membership Estimate</h1>
 
       <!-- Trigger/Open The Modal -->
-      <button ng-show="isLess" class="ng-hide" ng-click="openModal()" class="w3-button w3-black">Add a Family Member</button>
+      <button ng-show="isLess" class="ng-hide" ng-click="openModal()">Add a Family Member</button>
 
       <!--Custom Family Member Modal -->
       <div ng-show="isOpen" class="modal">
         <span class="close close-btn" ng-click="closeModal()">&times;</span>
-        <h1 class="center">Add Family Member</h1>
+        <h2>Add Family Member</h2>
 
         <form ng-submit="addMember()">
-          <input type="text" ng-model="member" ng-class="customStyle.colorClass" name="text" />
+          <input class="customInput" type="text" ng-model="member" ng-class="customStyle.colorClass" name="text" />
           <input type="submit" id="submit" value="Add"/>
         </form>
 
-      </div>
+      </div><br><br>
 
      <!-- Membership Table -->
      <table class="center">
-       <tr>
+       <tr class="divider">
          <th>Annual Membership</th>
-         <th>${{memberPrice}}</th>
+         <th class="customPricePadding">${{memberPrice}}</th>
+       </tr>
+
+       <tr ng-show="hasFamily">
+         <th>Family Membership</th>
+         <th>   </th>
        </tr>
 
        <tr ng-repeat="member in members">
-         <td>{{member}}</td>
-         <td>${{familyPrice}}</td>
+         <td class="customLeft memberPadding">* {{member}}</td>
+         <td class="customPricePadding">${{familyPrice}}</td>
        </tr>
 
-       <tr>
-         <td>Total</td>
-         <td>${{total}}</td>
+       <tr class="divider">
+         <th class="customLeft">Total</th>
+         <th class="customPricePadding">${{total}}</th>
        </tr>
      </table>
+     <br>
 
     <!-- Promo Code -->
     <form ng-submit="addPromocode()">

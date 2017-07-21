@@ -4,6 +4,7 @@ myApp.controller('AppCtrl', ['$scope', '$http',
     $scope.member = '';
     $scope.isLess = true;
     $scope.isOpen = false;
+    $scope.hasFamily = false;
     $scope.promocode = '';
     $scope.customStyle = {};
 
@@ -48,6 +49,7 @@ myApp.controller('AppCtrl', ['$scope', '$http',
         $scope.members.push(this.member);
         $scope.member = '';
         $scope.total += $scope.familyPrice;
+        $scope.hasFamily = true;
 
         if($scope.members.length === 3){
           $scope.isLess = false;
@@ -58,6 +60,7 @@ myApp.controller('AppCtrl', ['$scope', '$http',
 
     $scope.addPromocode = function(){
       if($scope.isRemove){
+        $scope.turnBlack();
         $scope.promocode = '';
         setDefault();
         setApply();
@@ -71,7 +74,8 @@ myApp.controller('AppCtrl', ['$scope', '$http',
                 $scope.total = ($scope.members.length * $scope.familyPrice) + $scope.memberPrice;
                 $scope.turnBlack();
                 setRemove();
-              } else {
+                return;
+              } else if($scope.promocode !== promocode.code){
                 $scope.turnRed();
               }
             }
