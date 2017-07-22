@@ -1,12 +1,21 @@
-myApp.controller('AppCtrl', ['$scope', '$http',
-  function($scope, $http) {
+myApp.controller('AppCtrl', ['$scope', '$http', 'MembershipApp',
+  function($scope, $http, MembershipApp) {
+    $scope.data = MembershipApp.getData();
+    console.log($scope.data);
     $scope.members = [];
     $scope.member = '';
     $scope.isLess = true;
     $scope.isOpen = false;
+    $scope.customStyle.colorClass = $scope.data.fontColor;
+    $scope.isApply = $scope.data.isApply;
+    $scope.isRemove = $scope.data.isRemove;
     $scope.hasFamily = false;
-    $scope.promocode = '';
+    $scope.promocode = $scope.data.promocodeText;
     $scope.customStyle = {};
+
+    $scope.getCheese = function(){
+      MembershipApp.cheese();
+    }
 
     $scope.turnRed = function(){
       $scope.customStyle.colorClass = "red";
@@ -25,9 +34,7 @@ myApp.controller('AppCtrl', ['$scope', '$http',
     }
 
     let setDefault = function(){
-      $scope.memberPrice = 179;
-      $scope.familyPrice = 50;
-      $scope.total = ($scope.members.length * $scope.familyPrice) + $scope.memberPrice;
+      MembershipApp.setPrices($scope.data.prices);
     }
 
     let setApply = function(){
@@ -44,14 +51,12 @@ myApp.controller('AppCtrl', ['$scope', '$http',
     setApply();
 
     $scope.addMember = function(){
-      console.log('submitting');
       if($scope.member) {
-        $scope.members.push(this.member);
+        MembershipApp.addMember($scope.member);
         $scope.member = '';
-        $scope.total += $scope.familyPrice;
         $scope.hasFamily = true;
 
-        if($scope.members.length === 3){
+        if($scope.data.members.length === 3){
           $scope.isLess = false;
         }
         $scope.closeModal();
@@ -65,6 +70,7 @@ myApp.controller('AppCtrl', ['$scope', '$http',
         setDefault();
         setApply();
       } else {
+        MembershipApp.addPromocode($scope.promocode);
         $http.get('data/promo.json')
           .success(function(data) {
             for(let promocode of data){

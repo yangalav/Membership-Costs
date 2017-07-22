@@ -1,8 +1,7 @@
 'use strict';
 
-var myApp = angular.module('myApp', []);
+let myApp = angular.module('myApp', ['appRoutes', 'AppService']);
 
 angular.module('AppCtrl', [
-  'appRoutes',
-  'myApp'
+  'myApp',
 ]);
