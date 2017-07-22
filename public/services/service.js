@@ -17,10 +17,14 @@ angular.module('AppService', [])
     return data;
   };
 
+  let getTotal = function(length, famPrice, membPrice){
+    return (length * famPrice) + membPrice;
+  }
+
   let setDefault = function() {
     data.prices.memberPrice = 179;
     data.prices.familyPrice = 50;
-    data.prices.total = (data.members.length * data.prices.familyPrice) + data.prices.memberPrice;
+    data.prices.total = getTotal(data.members.length, data.prices.familyPrice, data.prices.memberPrice);
   };
 
   let turnRed = function(){
@@ -54,7 +58,7 @@ angular.module('AppService', [])
             if(promocode === promoObj.code){
               data.prices.memberPrice = promoObj.memberPrice;
               data.prices.familyPrice = promoObj.familyPrice;
-              data.prices.total = (data.members.length * data.prices.familyPrice) + data.prices.memberPrice;
+              data.prices.total = getTotal(data.members.length, data.prices.familyPrice, data.prices.memberPrice);
               turnBlack();
               setRemove();
               return;
@@ -91,6 +95,7 @@ angular.module('AppService', [])
     addMember,
     getData,
     setDefault,
+    getTotal,
     addPromocode,
     turnRed,
     turnBlack,
