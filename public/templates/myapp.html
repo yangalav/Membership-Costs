@@ -5,16 +5,16 @@
   <h1>CLEAR Membership Estimate</h1>
 
   <!-- Trigger/Open The Modal -->
-  <button ng-show="isLess" class="ng-hide" ng-click="openModal()">Add a Family Member</button>
+  <button ng-show="data.isLess" class="ng-hide" ng-click="openModal()">Add a Family Member</button>
 
   <!--Custom Family Member Modal -->
-  <div ng-show="isOpen" class="modal">
+  <div ng-show="data.isOpen" class="modal">
     <span class="close close-btn" ng-click="closeModal()">&times;</span>
     <h2>Add Family Member</h2>
 
     <form ng-submit="addMember()">
-      <input class="customInput" type="text" ng-model="member" ng-class="customStyle.colorClass" name="text" />
-      <input type="submit" id="submit" ng-show="member" value="Add"/>
+      <input class="customInput" type="text" ng-model="data.member" name="text" />
+      <input type="submit" id="submit" ng-show="data.member" value="Add"/>
     </form>
 
     <button ng-click="getCheese()">Cheese</button>
@@ -25,31 +25,31 @@
  <table class="center">
    <tr>
      <th class="bottomPadding">Annual Membership</th>
-     <th class="bottomPadding customPriceStyle">${{memberPrice}}</th>
+     <th class="bottomPadding customPriceStyle">${{data.prices.memberPrice}}</th>
    </tr>
 
-   <tr ng-show="hasFamily">
+   <tr ng-show="data.hasFamily">
      <th>Family Membership</th>
      <th>   </th>
    </tr>
 
-   <tr ng-repeat="member in members">
-     <td class="customLeft memberPadding">* {{member}}</td>
-     <td class="customPriceStyle">${{familyPrice}}</td>
+   <tr ng-repeat="person in data.members">
+     <td class="customLeft memberPadding">* {{person}}</td>
+     <td class="customPriceStyle">${{data.prices.familyPrice}}</td>
    </tr>
 
    <tr class="divider">
      <th class="customLeft">Total</th>
-     <th class="customPriceStyle">${{total}}</th>
+     <th class="customPriceStyle">${{data.prices.total}}</th>
    </tr>
  </table>
  <br>
 
 <!-- Promo Code -->
 <form ng-submit="addPromocode()">
-  <input type="text" ng-change="changeBackColor()" ng-init="promocode='Promo Code'" ng-model="promocode" ng-class="customStyle.colorClass" name="text"/>
-  <input type="submit" id="submit" ng-show="isApply" class="ng-hide" value="Apply"/>
-  <input type="submit" id="submit" ng-show="isRemove" class="ng-hide" value="Remove"/>
+  <input type="text" ng-change="changeBackColor()" ng-init="data.promocodeText='Promo Code'" ng-model="data.promocodeText" ng-class="customStyle.colorClass" name="text"/>
+  <input type="submit" id="submit" ng-show="data.isApply" class="ng-hide" value="Apply"/>
+  <input type="submit" id="submit" ng-show="data.isRemove" class="ng-hide" value="Remove"/>
 </form>
 
 </div>

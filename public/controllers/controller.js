@@ -2,27 +2,11 @@ myApp.controller('AppCtrl', ['$scope', '$http', 'MembershipApp',
   function($scope, $http, MembershipApp) {
     $scope.data = MembershipApp.getData();
     console.log($scope.data);
-    $scope.members = [];
-    $scope.member = '';
-    $scope.isLess = true;
-    $scope.isOpen = false;
-    $scope.customStyle.colorClass = $scope.data.fontColor;
-    $scope.isApply = $scope.data.isApply;
-    $scope.isRemove = $scope.data.isRemove;
-    $scope.hasFamily = false;
-    $scope.promocode = $scope.data.promocodeText;
     $scope.customStyle = {};
+    $scope.customStyle.colorClass = $scope.data.fontColor;
 
     $scope.getCheese = function(){
       MembershipApp.cheese();
-    }
-
-    $scope.turnRed = function(){
-      $scope.customStyle.colorClass = "red";
-    }
-
-    $scope.turnBlack = function(){
-      $scope.customStyle.colorClass = "black";
     }
 
     $scope.changeOverlay = function(){
@@ -30,70 +14,25 @@ myApp.controller('AppCtrl', ['$scope', '$http', 'MembershipApp',
     }
 
     $scope.changeBackColor = function(){
-      $scope.turnBlack();
+      MembershipApp.turnBlack();
     }
 
     let setDefault = function(){
-      MembershipApp.setPrices($scope.data.prices);
-    }
-
-    let setApply = function(){
-      $scope.isApply = true;
-      $scope.isRemove = false;
-    }
-
-    let setRemove = function(){
-      $scope.isApply = false;
-      $scope.isRemove = true;
+      MembershipApp.setDefault();
     }
 
     setDefault();
-    setApply();
 
     $scope.addMember = function(){
-      if($scope.member) {
-        MembershipApp.addMember($scope.member);
-        $scope.member = '';
-        $scope.hasFamily = true;
-
-        if($scope.data.members.length === 3){
-          $scope.isLess = false;
-        }
-        $scope.closeModal();
-      }
+        MembershipApp.addMember($scope.data.member);
     };
 
     $scope.addPromocode = function(){
-      if($scope.isRemove){
-        $scope.turnBlack();
-        $scope.promocode = '';
-        setDefault();
-        setApply();
-      } else {
-        MembershipApp.addPromocode($scope.promocode);
-        $http.get('data/promo.json')
-          .success(function(data) {
-            for(let promocode of data){
-              if($scope.promocode === promocode.code){
-                $scope.memberPrice = promocode.memberPrice;
-                $scope.familyPrice = promocode.familyPrice;
-                $scope.total = ($scope.members.length * $scope.familyPrice) + $scope.memberPrice;
-                $scope.turnBlack();
-                setRemove();
-                return;
-              } else if($scope.promocode !== promocode.code){
-                $scope.turnRed();
-              }
-            }
-          })
-          .error(function(data){
-            console.log("ERROR");
-          });
-      }
+      MembershipApp.addPromocode($scope.data.promocodeText);
     };
 
     $scope.openModal = function(){
-      $scope.isOpen = true;
+      $scope.data.isOpen = true;
     }
 
     $scope.closeModal = function(){
