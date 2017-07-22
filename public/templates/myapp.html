@@ -1,6 +1,6 @@
 <div class="container" ng-controller="AppCtrl">
   <!-- Darkens background overlay when Modal is opened-->
-  <div class="overlay" ng-show=isOpen></div>
+  <div class="overlay" ng-show=data.isOpen></div>
 
   <h1>CLEAR Membership Estimate</h1>
 
@@ -33,7 +33,7 @@
      <th>   </th>
    </tr>
 
-   <tr ng-repeat="person in data.members">
+   <tr ng-show="data.members" ng-repeat="person in data.members">
      <td class="customLeft memberPadding">* {{person}}</td>
      <td class="customPriceStyle">${{data.prices.familyPrice}}</td>
    </tr>
@@ -47,7 +47,7 @@
 
 <!-- Promo Code -->
 <form ng-submit="addPromocode()">
-  <input type="text" ng-change="changeBackColor()" ng-init="data.promocodeText='Promo Code'" ng-model="data.promocodeText" ng-class="customStyle.colorClass" name="text"/>
+  <input type="text" ng-change="changeBackColor()" ng-init="data.promocodeText='Promo Code'" ng-model="data.promocodeText" ng-class="data.customStyle.colorClass" name="text"/>
   <input type="submit" id="submit" ng-show="data.isApply" class="ng-hide" value="Apply"/>
   <input type="submit" id="submit" ng-show="data.isRemove" class="ng-hide" value="Remove"/>
 </form>

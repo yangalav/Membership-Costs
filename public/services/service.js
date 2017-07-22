@@ -4,17 +4,13 @@ angular.module('AppService', [])
     member: '',
     members: [],
     prices: { memberPrice: 179, familyPrice: 50, total: 179 },
-    fontColor: null,
     isLess: true,
     isApply: true,
     isRemove: false,
     isOpen: false,
     promocodeText: '',
-    hasFamily: false
-  };
-
-  let cheese = function() {
-    console.log("PROVOLONE");
+    hasFamily: false,
+    customStyle: {}
   };
 
   let getData = function() {
@@ -25,15 +21,14 @@ angular.module('AppService', [])
     data.prices.memberPrice = 179;
     data.prices.familyPrice = 50;
     data.prices.total = (data.members.length * data.prices.familyPrice) + data.prices.memberPrice;
-    console.log(data.members.length);
   };
 
   let turnRed = function(){
-    data.fontColor = "red";
+    data.customStyle.colorClass = "red";
   };
 
   let turnBlack = function(){
-    data.fontColor = "black";
+    data.customStyle.colorClass = "black";
   };
 
   let setApply = function(){
@@ -57,7 +52,6 @@ angular.module('AppService', [])
         .success(function(promoData) {
           for(let promoObj of promoData){
             if(promocode === promoObj.code){
-              console.log(data.prices);
               data.prices.memberPrice = promoObj.memberPrice;
               data.prices.familyPrice = promoObj.familyPrice;
               data.prices.total = (data.members.length * data.prices.familyPrice) + data.prices.memberPrice;
@@ -94,7 +88,6 @@ angular.module('AppService', [])
   }
 
   return {
-    cheese,
     addMember,
     getData,
     setDefault,

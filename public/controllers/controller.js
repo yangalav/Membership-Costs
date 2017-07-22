@@ -1,27 +1,14 @@
 myApp.controller('AppCtrl', ['$scope', '$http', 'MembershipApp',
   function($scope, $http, MembershipApp) {
     $scope.data = MembershipApp.getData();
-    console.log($scope.data);
-    $scope.customStyle = {};
-    $scope.customStyle.colorClass = $scope.data.fontColor;
-
-    $scope.getCheese = function(){
-      MembershipApp.cheese();
-    }
-
-    $scope.changeOverlay = function(){
-      $scope.customStyle.overlayClass = "overlay";
-    }
-
-    $scope.changeBackColor = function(){
-      MembershipApp.turnBlack();
-    }
 
     let setDefault = function(){
       MembershipApp.setDefault();
     }
 
-    setDefault();
+    $scope.changeBackColor = function(){
+      MembershipApp.turnBlack();
+    }
 
     $scope.addMember = function(){
         MembershipApp.addMember($scope.data.member);
@@ -36,7 +23,7 @@ myApp.controller('AppCtrl', ['$scope', '$http', 'MembershipApp',
     }
 
     $scope.closeModal = function(){
-      $scope.isOpen = false;
+      $scope.data.isOpen = false;
     }
 
 }]);
