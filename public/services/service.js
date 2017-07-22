@@ -3,7 +3,7 @@ angular.module('AppService', [])
   let data = {
     member: '',
     members: [],
-    prices: {},
+    prices: { memberPrice: 179, familyPrice: 50, total: 179 },
     fontColor: null,
     isLess: true,
     isApply: true,
@@ -25,7 +25,7 @@ angular.module('AppService', [])
     data.prices.memberPrice = 179;
     data.prices.familyPrice = 50;
     data.prices.total = (data.members.length * data.prices.familyPrice) + data.prices.memberPrice;
-    console.log(data.prices.total);
+    console.log(data.members.length);
   };
 
   let turnRed = function(){
@@ -54,21 +54,22 @@ angular.module('AppService', [])
       setApply();
     } else {
       $http.get('data/promo.json')
-        .success(function(data) {
-          for(let promo of data){
-            if(promocode === promo.code){
-              data.prices.memberPrice = promo.memberPrice;
-              data.prices.familyPrice = promo.familyPrice;
+        .success(function(promoData) {
+          for(let promoObj of promoData){
+            if(promocode === promoObj.code){
+              console.log(data.prices);
+              data.prices.memberPrice = promoObj.memberPrice;
+              data.prices.familyPrice = promoObj.familyPrice;
               data.prices.total = (data.members.length * data.prices.familyPrice) + data.prices.memberPrice;
               turnBlack();
               setRemove();
               return;
-            } else if(promocode !== promo.code){
+            } else if(promocode !== promoObj.code){
               turnRed();
             }
           }
         })
-        .error(function(data){
+        .error(function(promoData){
           console.log("ERROR");
         });
     }
