@@ -91,6 +91,10 @@ angular.module('AppService', [])
     }
   }
 
+  let closeModal = function() {
+    data.isOpen = false;
+  }
+
   return {
     addMember,
     getData,
@@ -100,7 +104,8 @@ angular.module('AppService', [])
     turnRed,
     turnTeal,
     setApply,
-    setRemove
+    setRemove,
+    closeModal
   };
 
 });

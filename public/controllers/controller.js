@@ -33,7 +33,7 @@ myApp.controller('AppCtrl', ['$scope', '$http', 'MembershipApp',
 
     //Closes modal
     $scope.closeModal = function(){
-      $scope.data.isOpen = false;
+      MembershipApp.closeModal();
     }
 
 }]);
