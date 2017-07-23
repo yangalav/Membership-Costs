@@ -138,3 +138,19 @@ th, td {
 .memberPriceBottom {
   padding-bottom: 7px;
 }
+
+input::-webkit-input-placeholder {
+color: lightgray;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+color: lightgray;  
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+color: lightgray;  
+}
+
+input:-ms-input-placeholder {
+color: lightgray;  
+}

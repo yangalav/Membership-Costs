@@ -45,7 +45,7 @@
 
 <!-- Promo Code -->
 <form ng-submit="addPromocode()">
-  <input type="text" class="promocodeInput" ng-change="changeBackColor()" ng-init="data.promocodeText='Promo Code'" ng-model="data.promocodeText" ng-class="data.customStyle.colorClass" name="text"/>
+  <input type="text" class="promocodeInput" ng-change="changeBackColor()" placeholder="PROMOCODE" ng-model="data.promocodeText" ng-class="data.customStyle.colorClass" name="text"/>
   <input type="submit" id="submit" ng-show="data.isApply" class="ng-hide btn" value="Apply"/>
   <input type="submit" id="submit" ng-show="data.isRemove" class="ng-hide btn" value="Remove"/>
 </form>
