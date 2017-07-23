@@ -4,7 +4,8 @@
   "author": "you!",
   "private": true,
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "mongodb": "^2.2.30"
   },
   "scripts": {
     "serve": "node ./server.js",

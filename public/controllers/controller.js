@@ -2,6 +2,8 @@ myApp.controller('AppCtrl', ['$scope', '$http', 'MembershipApp',
   function($scope, $http, MembershipApp) {
     $scope.data = MembershipApp.getData();
 
+    MembershipApp.turnBlack();
+
     let setDefault = function(){
       MembershipApp.setDefault();
     }

@@ -5,7 +5,7 @@
   <h1>CLEAR Membership Estimate</h1>
 
   <!-- Trigger/Open The Modal -->
-  <button ng-show="data.isLess" class="ng-hide" ng-click="openModal()">Add a Family Member</button>
+  <button ng-show="data.isLess" class="ng-hide btn" ng-click="openModal()">Add a Family Member</button>
 
   <!--Custom Family Member Modal -->
   <div ng-show="data.isOpen" class="modal">
@@ -13,11 +13,9 @@
     <h2>Add Family Member</h2>
 
     <form ng-submit="addMember()">
-      <input class="customInput" type="text" ng-model="data.member" name="text" />
-      <input type="submit" id="submit" ng-show="data.member" value="Add"/>
+      <input class="customInput promocodeInput coral" type="text" ng-model="data.member" name="text" />
+      <input type="submit" class="btn addBtn" id="submit" ng-show="data.member" value="Add"/>
     </form>
-
-    <button ng-click="getCheese()">Cheese</button>
 
   </div><br><br>
 
@@ -35,7 +33,7 @@
 
    <tr ng-show="data.members" ng-repeat="person in data.members">
      <td class="customLeft memberPadding">* {{person}}</td>
-     <td class="customPriceStyle">${{data.prices.familyPrice}}</td>
+     <td class="customPriceStyle memberPriceBottom">${{data.prices.familyPrice}}</td>
    </tr>
 
    <tr class="divider">
@@ -47,9 +45,9 @@
 
 <!-- Promo Code -->
 <form ng-submit="addPromocode()">
-  <input type="text" ng-change="changeBackColor()" ng-init="data.promocodeText='Promo Code'" ng-model="data.promocodeText" ng-class="data.customStyle.colorClass" name="text"/>
-  <input type="submit" id="submit" ng-show="data.isApply" class="ng-hide" value="Apply"/>
-  <input type="submit" id="submit" ng-show="data.isRemove" class="ng-hide" value="Remove"/>
+  <input type="text" class="promocodeInput" ng-change="changeBackColor()" ng-init="data.promocodeText='Promo Code'" ng-model="data.promocodeText" ng-class="data.customStyle.colorClass" name="text"/>
+  <input type="submit" id="submit" ng-show="data.isApply" class="ng-hide btn" value="Apply"/>
+  <input type="submit" id="submit" ng-show="data.isRemove" class="ng-hide btn" value="Remove"/>
 </form>
 
 </div>
