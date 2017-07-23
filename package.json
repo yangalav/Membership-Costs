@@ -1,29 +1,21 @@
 {
-  "name": "clear-code-test",
+  "name": "clear-web-code-test",
   "version": "1.0.0",
-  "description": "",
-  "main": "karma.conf.js",
-  "directories": {
-    "test": "test"
-  },
+  "author": "you!",
+  "private": true,
   "dependencies": {
-    "angular-ui-router": "^1.0.3",
-    "express": "^4.15.3",
-    "mongodb": "^2.2.30"
+    "express": "^4.15.2",
+    "mongodb": "^2.2.30",
+    "@uirouter/angularjs": "latest"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "serve": "node ./server.js",
+    "test": "./node_modules/karma/bin/karma start"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yangalav/Membership-Costs.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/yangalav/Membership-Costs/issues"
-  },
-  "homepage": "https://github.com/yangalav/Membership-Costs#readme"
+  "devDependencies": {
+    "jasmine-core": "^2.6.1",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-jasmine": "^1.1.0"
+  }
 }
