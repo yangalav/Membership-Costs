@@ -13,10 +13,12 @@ angular.module('AppService', [])
     customStyle: {}
   };
 
+
   let getData = function() {
     return data;
   };
 
+  //Helper function to calculate total cost
   let getTotal = function(length, famPrice, membPrice){
     return (length * famPrice) + membPrice;
   }
@@ -31,15 +33,17 @@ angular.module('AppService', [])
     data.customStyle.colorClass = "red";
   };
 
-  let turnBlack = function(){
-    data.customStyle.colorClass = "black";
+  let turnTeal = function(){
+    data.customStyle.colorClass = "teal";
   };
 
+  //Sets promo code submit button to 'Apply'
   let setApply = function(){
     data.isApply = true;
     data.isRemove = false;
   };
 
+  //Changes promo code button to 'Remove' once promo code is applied
   let setRemove = function(){
     data.isApply = false;
     data.isRemove = true;
@@ -47,7 +51,7 @@ angular.module('AppService', [])
 
   let addPromocode = function(promocode) {
     if(data.isRemove){
-      turnBlack();
+      turnTeal();
       data.promocodeText = '';
       setDefault();
       setApply();
@@ -59,7 +63,7 @@ angular.module('AppService', [])
               data.prices.memberPrice = promoObj.memberPrice;
               data.prices.familyPrice = promoObj.familyPrice;
               data.prices.total = getTotal(data.members.length, data.prices.familyPrice, data.prices.memberPrice);
-              turnBlack();
+              turnTeal();
               setRemove();
               return;
             } else if(promocode !== promoObj.code){
@@ -87,10 +91,6 @@ angular.module('AppService', [])
     }
   }
 
-  let closeModal = function(){
-    data.isOpen = false;
-  }
-
   return {
     addMember,
     getData,
@@ -98,10 +98,9 @@ angular.module('AppService', [])
     getTotal,
     addPromocode,
     turnRed,
-    turnBlack,
+    turnTeal,
     setApply,
-    setRemove,
-    closeModal
+    setRemove
   };
 
 });
