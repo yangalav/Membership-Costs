@@ -13,7 +13,7 @@ angular.module('AppService', [])
     customStyle: {}
   };
 
-
+  //Function that allows controller access to service data
   let getData = function() {
     return data;
   };
@@ -58,6 +58,7 @@ angular.module('AppService', [])
     } else {
       $http.get('data/promo.json')
         .success(function(promoData) {
+          console.log(promoData);
           for(let promoObj of promoData){
             if(promocode === promoObj.code){
               data.prices.memberPrice = promoObj.memberPrice;
@@ -65,6 +66,7 @@ angular.module('AppService', [])
               data.prices.total = getTotal(data.members.length, data.prices.familyPrice, data.prices.memberPrice);
               turnTeal();
               setRemove();
+              console.log(data.prices);
               return;
             } else if(promocode !== promoObj.code){
               turnRed();

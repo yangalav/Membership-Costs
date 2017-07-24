@@ -1,7 +1,7 @@
 describe('example', function(){
 
   it('exists', function(){
-    expect('Good luckwefef').toBeTruthy();
+    expect('it exists').toBeTruthy();
   });
 
 });
@@ -19,12 +19,33 @@ describe('MembershipApp factory', function(){
      expect(MembershipApp).toBeDefined();
    });
 
+});
 
-   describe('.addMember()', function() {
+describe('AppCtrl controller', function(){
+  var $controller;
 
-     it('should exist', function() {
-       expect(MembershipApp.addMember).toBeDefined();
-     });
-   });
+  beforeEach(angular.mock.module('AppCtrl'));
+
+  beforeEach(inject(function(_$controller_, _$httpBackend_) {
+    $controller = _$controller_;
+    $httpBackend = _$httpBackend_;
+  }));
+
+  it('should exist', function() {
+    var $scope =  {};
+    var controller = $controller('AppCtrl', { $scope: $scope });
+    expect(controller).toBeDefined();
+  });
+
+  describe('$scope.addMember', function() {
+    it('should add a family member to membership', function(){
+      var $scope =  {};
+      var controller = $controller('AppCtrl', { $scope: $scope });
+      $scope.data.members = ['Bob', 'Sarah'];
+      $scope.data.member = 'Kelly';
+      $scope.addMember();
+      expect($scope.data.members).toEqual(['Bob', 'Sarah', 'Kelly']);
+    });
+  });
 
 });
