@@ -18,5 +18,13 @@ describe('MembershipApp factory', function(){
    it('should exist', function() {
      expect(MembershipApp).toBeDefined();
    });
-   
+
+
+   describe('.addMember()', function() {
+
+     it('should exist', function() {
+       expect(MembershipApp.addMember).toBeDefined();
+     });
+   });
+
 });
