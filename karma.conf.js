@@ -12,7 +12,12 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test/**/*-spec.js'
+      './node_modules/angular/angular.js',                               // angular
+      './node_modules/@uirouter/angularjs/release/angular-ui-router.js', // ui-router
+      './node_modules/angular-mocks/angular-mocks.js',                   // loads our modules for tests
+      './public/services/service.js',                                    // our Users factory
+      './public/app.js',                                                 // our angular app
+      'test/**/*-spec.js',                                               // our test file for our Users factory
     ],
 
 
